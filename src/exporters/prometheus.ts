@@ -1,8 +1,7 @@
 import type { MetricsSnapshot } from "../types.js";
 
 function escLabelValue(v: string) {
-  // Order matters: backslash first, then newline, then quote
-  return v.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, "\\n");
+  return v.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/"/g, '\\"');
 }
 
 export function prometheusText(snap: MetricsSnapshot): string {

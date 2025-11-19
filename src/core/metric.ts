@@ -1,7 +1,7 @@
 import type { Labels, HistogramBucket } from "../types.js";
 
 export class Counter {
-  constructor(public readonly name: string, public readonly help?: string, private readonly baseLabels: string[] = []) {}
+  constructor(public readonly name: string, public readonly help?: string, private readonly baseLabels: string[] = []) { }
   private values = new Map<string, number>();
   private key(lbls: Record<string, string>): string {
     const parts = this.baseLabels.map((k) => `${k}\x00${lbls[k] ?? ""}`);
@@ -24,7 +24,7 @@ export class Counter {
 }
 
 export class Gauge {
-  constructor(public readonly name: string, public readonly help?: string, private readonly baseLabels: string[] = []) {}
+  constructor(public readonly name: string, public readonly help?: string, private readonly baseLabels: string[] = []) { }
   private values = new Map<string, number>();
   private key(lbls: Record<string, string>): string {
     const parts = this.baseLabels.map((k) => `${k}\x00${lbls[k] ?? ""}`);
@@ -54,7 +54,7 @@ export class Histogram {
   constructor(
     public readonly name: string,
     public readonly help: string | undefined,
-    private readonly buckets: number[] = [0.005,0.01,0.025,0.05,0.1,0.25,0.5,1,2.5,5,10],
+    private readonly buckets: number[] = [0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10],
     private readonly baseLabels: string[] = []
   ) {
     this.counts = new Array(buckets.length).fill(0);
@@ -86,7 +86,7 @@ export class Histogram {
 }
 
 export class Timer {
-  constructor(private readonly now: () => number) {}
+  constructor(private readonly now: () => number) { }
   start() {
     const start = this.now();
     return (labels?: Labels) => {
