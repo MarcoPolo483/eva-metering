@@ -1,0 +1,2 @@
+# EVA Metering ignore rules
+node_modules/.package-lock.json
